@@ -5,10 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Only For Herrr 💗✨</title>
     
+    <!-- Full-Screen PWA & Web App Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#0F081D">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Caveat:wght@600;700&family=DM+Serif+Display&family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,600;1,400;1,600&family=Poppins:wght@500;600&family=Quicksand:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Caveat:wght@600;700&family=DM+Serif+Display&family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,600;1,400;1,600&family=Poppins:wght@500;600&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
     
     <!-- GSAP Engine & Canvas Confetti -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -27,9 +33,9 @@
             --purple-accent: #B388FF;
             --gold-accent: #D4AF37;
             --text-dark: #3A2E56;
-            --glass-bg: rgba(255, 255, 255, 0.75);
-            --glass-border: rgba(255, 255, 255, 0.9);
-            --glass-shadow: 0 12px 35px rgba(145, 97, 224, 0.15);
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.95);
+            --glass-shadow: 0 10px 30px rgba(145, 97, 224, 0.18);
         }
 
         * {
@@ -80,28 +86,38 @@
 
         .hud-header {
             position: fixed;
-            top: env(safe-area-inset-top, 15px);
-            left: 20px; right: 20px;
+            top: env(safe-area-inset-top, 14px);
+            left: 14px; right: 14px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 10px;
             z-index: 1000;
             pointer-events: none;
         }
 
         .level-badge {
             background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1.5px solid var(--glass-border);
             padding: 8px 18px;
-            border-radius: 25px;
-            font-size: 0.8rem;
-            font-weight: 900;
-            color: var(--purple-dark);
+            border-radius: 26px;
+            font-family: 'Caveat', cursive;
+            font-size: 1.25rem;
+            line-height: 1.15;
+            font-weight: 700;
+            color: #6C4FB2;
             box-shadow: var(--glass-shadow);
-            letter-spacing: 1px;
             pointer-events: auto;
+            max-width: calc(100% - 56px);
+            white-space: normal;
+            word-wrap: break-word;
+            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .floating-music-btn {
@@ -110,8 +126,9 @@
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--glass-border);
             border-radius: 50%;
-            width: 44px; height: 44px;
-            font-size: 1.2rem;
+            width: 42px; height: 42px;
+            min-width: 42px;
+            font-size: 1.15rem;
             cursor: pointer;
             box-shadow: var(--glass-shadow);
             pointer-events: auto;
@@ -278,14 +295,14 @@
         }
 
         #notebookScreen { display: flex; justify-content: center; align-items: center; }
-        .level-container { width: 100%; max-width: 350px; height: 72dvh; position: relative; margin-top: 35px; }
+        .level-container { width: 100%; max-width: 350px; height: 75dvh; position: relative; margin-top: 35px; }
 
         .level-card {
             position: absolute;
             width: 100%; height: 100%;
             background: #FFFFFF;
             border-radius: 24px;
-            padding: 18px;
+            padding: 20px 18px;
             box-shadow: var(--glass-shadow);
             border: 1px solid rgba(255,255,255,0.9);
             display: flex; flex-direction: column;
@@ -313,7 +330,7 @@
             color: white; border: none;
             padding: 10px 22px; border-radius: 25px;
             font-weight: 800; font-size: 0.82rem;
-            cursor: pointer; margin-top: 8px;
+            cursor: pointer; margin-top: 12px;
             flex-shrink: 0;
             box-shadow: 0 4px 15px rgba(145, 97, 224, 0.3);
             transition: all 0.3s ease;
@@ -408,13 +425,73 @@
         .scratch-reveal { position: absolute; width: 100%; height: 100%; background: #F3ECFE; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 800; color: var(--purple-primary); text-align: center; padding: 6px; }
         .scratch-canvas { position: absolute; top: 0; left: 0; }
 
-        .typewriter-container { font-family: 'Caveat', cursive; font-size: 1.3rem; text-align: left; line-height: 1.45; color: #333; margin: 8px 0; height: 160px; overflow-y: auto; }
+        /* EXPANDED LEVEL 10 TEXT AREA */
+        .typewriter-container {
+            font-family: 'Caveat', cursive;
+            font-size: 1.4rem;
+            text-align: left;
+            line-height: 1.5;
+            color: #333;
+            margin: 12px 0;
+            flex: 1;
+            width: 100%;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            padding: 6px 4px;
+        }
 
+        .typewriter-container::-webkit-scrollbar {
+            width: 4px;
+        }
+        .typewriter-container::-webkit-scrollbar-thumb {
+            background: rgba(145, 97, 224, 0.3);
+            border-radius: 4px;
+        }
+
+        /* CINEMATIC ENDING SCREEN & NEON PINK GLOW TEXT */
         #endingScreen { background: #040209; color: #fff; z-index: 4000; transition: background 1.5s ease; }
         .stars-bg { position: absolute; width: 100%; height: 100%; background: radial-gradient(ellipse at bottom, #1a102F 0%, #040209 100%); transition: opacity 1.5s ease; }
-        .ending-content { z-index: 2; text-align: center; padding: 20px; max-width: 320px; }
+        .ending-content { z-index: 2; text-align: center; padding: 20px; max-width: 360px; }
         .glowing-purple-heart { font-size: 4.5rem; margin-bottom: 12px; filter: drop-shadow(0 0 25px var(--purple-accent)); }
-        .ending-text-flow { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #E6D6FF; min-height: 60px; line-height: 1.5; }
+        
+        .ending-text-flow { 
+            font-family: 'Alex Brush', cursive; 
+            font-size: 2.8rem; 
+            line-height: 1.25; 
+            color: #FFE6EE; 
+            min-height: 140px; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 10px;
+            text-shadow: 
+                0 0 6px #FFA3C8,
+                0 0 15px #FF6B9D,
+                0 0 30px #FF3377,
+                0 0 45px #D63384;
+            animation: neonPinkGlow 2.4s ease-in-out infinite alternate;
+        }
+
+        @keyframes neonPinkGlow {
+            0% {
+                text-shadow: 
+                    0 0 6px #FFA3C8,
+                    0 0 15px #FF6B9D,
+                    0 0 25px #FF3377,
+                    0 0 40px #D63384;
+                transform: scale(0.99);
+            }
+            100% {
+                text-shadow: 
+                    0 0 8px #FFFFFF,
+                    0 0 18px #FFA3C8,
+                    0 0 32px #FF528C,
+                    0 0 55px #FF2E75,
+                    0 0 70px #B82260;
+                transform: scale(1.02);
+            }
+        }
         
         .hands-hug-container {
             font-size: 3.5rem;
@@ -440,7 +517,7 @@
     <canvas id="particleCanvas"></canvas>
 
     <header class="hud-header">
-        <div id="levelBadge" class="level-badge">LEVEL 1/10</div>
+        <div id="levelBadge" class="level-badge">I 💗</div>
         <button id="musicBtn" class="floating-music-btn" aria-label="Toggle Music">🎵</button>
     </header>
 
@@ -548,14 +625,14 @@
                     <div class="meme-slider">
                         <div class="meme-slide active-slide"><div class="meme-img-frame"><img src="assets/meme1.jpg.gif" onerror="this.onerror=null; this.src='assets/meme1.gif'; this.onerror=function(){this.src='assets/meme1.jpg';};" alt="Meme 1"></div><p style="font-size: 0.8rem; margin-top: 4px;">Take it beybbb...</p></div>
                         <div class="meme-slide"><div class="meme-img-frame"><img src="assets/meme2.jpg.gif" onerror="this.onerror=null; this.src='assets/meme2.gif'; this.onerror=function(){this.src='assets/meme2.jpg';};" alt="Meme 2"></div><p style="font-size: 0.8rem; margin-top: 4px;">My heart when u call me...</p></div>
-                        <div class="meme-slide"><div class="meme-img-frame"><img src="assets/meme3.jpg.gif" onerror="this.onerror=null; this.src='assets/meme3.gif'; this.onerror=function(){this.src='assets/meme3.jpg';};" alt="Meme 3"></div><p style="font-size: 0.8rem; margin-top: 4px;">whenever I think about U...</p></div>
-                        <div class="meme-slide"><div class="meme-img-frame"><img src="assets/meme4.jpg.gif" onerror="this.onerror=null; this.src='assets/meme4.gif'; this.onerror=function(){this.src='assets/meme4.jpg';};" alt="Meme 4"></div><p style="font-size: 0.8rem; margin-top: 4px;">I need You I need You I need You....</p></div>
+                        <div class="meme-slide"><div class="meme-img-frame"><img src="assets/meme3.jpg.gif" onerror="this.onerror=null; this.src='assets/meme3.jpg'; this.onerror=function(){this.src='assets/meme3.jpg';};" alt="Meme 3"></div><p style="font-size: 0.8rem; margin-top: 4px;">whenever I think about U...</p></div>
+                        <div class="meme-slide"><div class="meme-img-frame"><img src="assets/meme4.jpg.gif" onerror="this.onerror=null; this.src='assets/meme4.jpg'; this.onerror=function(){this.src='assets/meme4.jpg';};" alt="Meme 4"></div><p style="font-size: 0.8rem; margin-top: 4px;">I need You I need You I need You....</p></div>
                         <div class="meme-slide"><div class="meme-img-frame"><img src="assets/meme5.jpg.gif" onerror="this.onerror=null; this.src='assets/meme5.gif'; this.onerror=function(){this.src='assets/meme5.jpg';};" alt="Meme 5"></div><p style="font-size: 0.8rem; margin-top: 4px;">whenever I text uhhh...</p></div>
                         <div class="meme-slide"><div class="meme-img-frame"><img src="assets/meme6.jpg.gif" onerror="this.onerror=null; this.src='assets/meme6.gif'; this.onerror=function(){this.src='assets/meme6.jpg';};" alt="Meme 6"></div><p style="font-size: 0.8rem; margin-top: 4px;">US</p></div>
                         <div class="meme-slide"><div class="meme-img-frame"><img src="assets/meme7.jpg.gif" onerror="this.onerror=null; this.src='assets/meme7.gif'; this.onerror=function(){this.src='assets/meme7.jpg';};" alt="Meme 7"></div><p style="font-size: 0.8rem; margin-top: 4px;">I,</p></div>
-                        <div class="meme-slide"><div class="meme-img-frame"><img src="assets/meme8.jpg.gif" onerror="this.onerror=null; this.src='assets/meme8.gif'; this.onerror=function(){this.src='assets/meme8.jpg';};" alt="Meme 8"></div><p style="font-size: 0.8rem; margin-top: 4px;">whenever u delete something...</p></div>
+                        <div class="meme-slide"><div class="meme-img-frame"><img src="assets/meme8.jpg.gif" onerror="this.onerror=null; this.src='assets/meme8.jpg'; this.onerror=function(){this.src='assets/meme8.jpg';};" alt="Meme 8"></div><p style="font-size: 0.8rem; margin-top: 4px;">whenever u delete something...</p></div>
                         <div class="meme-slide"><div class="meme-img-frame"><img src="assets/meme9.jpg.gif" onerror="this.onerror=null; this.src='assets/meme9.gif'; this.onerror=function(){this.src='assets/meme9.jpg';};" alt="Meme 9"></div><p style="font-size: 0.8rem; margin-top: 4px;">when u hurt my feelings...</p></div>
-                        <div class="meme-slide"><div class="meme-img-frame"><img src="assets/meme10.jpg.gif" onerror="this.onerror=null; this.src='assets/meme10.gif'; this.onerror=function(){this.src='assets/meme10.jpg';};" alt="Meme 10"></div><p style="font-size: 0.8rem; margin-top: 4px;">Stoppp...!!</p></div>
+                        <div class="meme-slide"><div class="meme-img-frame"><img src="assets/meme10.jpg.gif" onerror="this.onerror=null; this.src='assets/meme10.jpg'; this.onerror=function(){this.src='assets/meme10.jpg';};" alt="Meme 10"></div><p style="font-size: 0.8rem; margin-top: 4px;">Stoppp...!!</p></div>
                         <div class="meme-slide"><div class="meme-img-frame"><img src="assets/meme11.jpg.gif" onerror="this.onerror=null; this.src='assets/meme11.gif'; this.onerror=function(){this.src='assets/meme11.jpg';};" alt="Meme 11"></div><p style="font-size: 0.8rem; margin-top: 4px;">Wiee Whieee Wieeeee</p></div>
                         <div class="meme-slide"><div class="meme-img-frame"><img src="assets/meme12.jpg.gif" onerror="this.onerror=null; this.src='assets/meme12.gif'; this.onerror=function(){this.src='assets/meme12.jpg';};" alt="Meme 12"></div><p style="font-size: 0.8rem; margin-top: 4px;">Snow!?</p></div>
                         <div class="meme-slide"><div class="meme-img-frame"><img src="assets/meme13.jpg.gif" onerror="this.onerror=null; this.src='assets/meme13.gif'; this.onerror=function(){this.src='assets/meme13.jpg';};" alt="Meme 13"></div><p style="font-size: 0.8rem; margin-top: 4px;">Come beybbb</p></div>
@@ -662,14 +739,15 @@
                     <div style="display: flex; gap: 10px; margin: 6px 0;">
                         <div class="gift-box-item" data-reward="🫂 One Extra Hug!" style="font-size: 2.5rem; cursor: pointer;">🎁</div>
                         <div class="gift-box-item" data-reward="🎬 Movie Night Voucher!" style="font-size: 2.5rem; cursor: pointer;">🎁</div>
-                        <div class="gift-box-item" data-reward="🛋️ Unlimited Cuddles!" style="font-size: 2.5rem; cursor: pointer;">🎁</div>
+                        <div class="gift-box-item" data-reward="🛋️️ Unlimited Cuddles!" style="font-size: 2.5rem; cursor: pointer;">🎁</div>
                     </div>
                     <div id="giftResult" style="font-family: 'Caveat', cursive; font-size: 1.2rem; color: var(--purple-primary); min-height: 25px;"></div>
                     <button class="next-level-btn btn-squish locked">Turn the page →</button>
                 </div>
 
+                <!-- LEVEL 10: EXPANDED NOTE FOR HER -->
                 <div class="level-card" data-level="10">
-                    <span style="font-size: 0.7rem; color: var(--purple-primary); font-weight: 800;">✦ A NOTE FOR YOU 💜</span>
+                    <span style="font-size: 0.8rem; color: var(--purple-primary); font-weight: 800; letter-spacing: 0.5px; margin-bottom: 4px;">✦ A NOTE FOR YOU 💜</span>
                     <div class="typewriter-container">
                         <p id="typewriterText"></p>
                     </div>
@@ -710,6 +788,24 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+
+            // FULLSCREEN TRIGGER FUNCTION
+            function triggerFullscreen() {
+                const docEl = document.documentElement;
+                if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+                    if (docEl.requestFullscreen) {
+                        docEl.requestFullscreen().catch(() => {});
+                    } else if (docEl.webkitRequestFullscreen) {
+                        docEl.webkitRequestFullscreen();
+                    } else if (docEl.msRequestFullscreen) {
+                        docEl.msRequestFullscreen();
+                    }
+                }
+            }
+
+            // Enter fullscreen on first user touch / tap
+            document.addEventListener('touchstart', triggerFullscreen, { once: true });
+            document.addEventListener('click', triggerFullscreen, { once: true });
 
             let musicPlaying = false;
             let currentLevel = 1;
@@ -784,8 +880,51 @@
                 showToastCustom(randomMsg);
             }
 
+            // Word unlock array across all 10 stages
+            const progressivePhrases = [
+                "I 💗",
+                "I Love 🫂",
+                "I Love You ❤️‍🩹",
+                "I Love You Sooo ✨",
+                "I Love You Sooo Muchh 🌸",
+                "I Love You Sooo Muchh Myyy 🧸",
+                "I Love You Sooo Muchh Myyy Cuteee 🎀",
+                "I Love You Sooo Muchh Myyy Cuteee Little 🤍",
+                "I Love You Sooo Muchh Myyy Cuteee Little Babyyy 🥹🫂",
+                "I Love You Sooo Muchh Myyy Cuteee Little Babyyy, Ummmaahhh 😚💋"
+            ];
+
             function updateLevelHUD(levelNum) {
-                levelBadge.textContent = `LEVEL ${levelNum}/10`;
+                if (levelBadge && levelNum >= 1 && levelNum <= progressivePhrases.length) {
+                    const text = progressivePhrases[levelNum - 1];
+
+                    // Smooth GSAP transition out and in
+                    gsap.to(levelBadge, {
+                        scale: 0.85,
+                        opacity: 0.2,
+                        duration: 0.2,
+                        ease: "power2.in",
+                        onComplete: () => {
+                            levelBadge.textContent = text;
+                            
+                            // Adaptive font size so it never cuts off
+                            if (text.length > 35) {
+                                levelBadge.style.fontSize = "1.05rem";
+                            } else if (text.length > 20) {
+                                levelBadge.style.fontSize = "1.15rem";
+                            } else {
+                                levelBadge.style.fontSize = "1.25rem";
+                            }
+
+                            gsap.to(levelBadge, {
+                                scale: 1,
+                                opacity: 1,
+                                duration: 0.45,
+                                ease: "back.out(2)"
+                            });
+                        }
+                    });
+                }
             }
 
             const loadingMsgs = [
@@ -842,6 +981,7 @@
             const gfTitleText = document.getElementById('gfTitleText');
 
             function handleLevel1Tap() {
+                triggerFullscreen();
                 if (phaseState === "balloon") {
                     phaseState = "animating_balloon";
                     if (navigator.vibrate) navigator.vibrate(40);
@@ -919,6 +1059,7 @@
 
             document.getElementById('acceptDeliveryBtn').addEventListener('click', (e) => {
                 e.stopPropagation();
+                triggerFullscreen();
                 confetti({ particleCount: 40, spread: 50 });
                 welcomeScreen.classList.remove('active');
                 welcomeScreen.classList.add('hidden');
@@ -1105,12 +1246,16 @@
 
             function startTypewriter() {
                 const typewriterEl = document.getElementById('typewriterText');
+                const containerEl = document.querySelector('.typewriter-container');
                 typewriterEl.textContent = "";
                 let i = 0;
                 const timer = setInterval(() => {
                     if (i < personalNoteText.length) {
                         typewriterEl.textContent += personalNoteText.charAt(i);
                         i++;
+                        if (containerEl) {
+                            containerEl.scrollTop = containerEl.scrollHeight;
+                        }
                     } else {
                         clearInterval(timer);
                     }
@@ -1168,37 +1313,48 @@
                     gsap.to(bgMusic, { volume: 0.15, duration: 4.0, ease: "power1.out" });
                 }
 
+                // Cute ending dialogue matching the image vibe
                 const lines = [
-                    "Wait a second, Beybb...",
-                    "Before you leave...",
-                    "There's one thing I need you to know."
+                    "Wait a second<br>beybbb... 💕",
+                    "Before you go away... 🥺",
+                    "There's one little thing<br>I need you to know... 🌸"
                 ];
                 let lineIdx = 0;
 
                 function showNextLine() {
                     if (lineIdx < lines.length) {
-                        endingText.style.opacity = 0;
-                        setTimeout(() => {
-                            endingText.textContent = lines[lineIdx];
-                            gsap.to(endingText, { opacity: 1, duration: 0.8 });
+                        gsap.to(endingText, { 
+                            opacity: 0, 
+                            scale: 0.85, 
+                            duration: 0.45, 
+                            ease: "power2.in", 
+                            onComplete: () => {
+                                endingText.innerHTML = lines[lineIdx];
+                                gsap.fromTo(endingText, 
+                                    { opacity: 0, scale: 0.8 }, 
+                                    { opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.6)" }
+                                );
 
-                            if (lineIdx === 1 && musicPlaying) {
-                                gsap.to(bgMusic, { volume: 0.05, duration: 2.2, ease: "power1.out" });
-                            }
-                            else if (lineIdx === 2 && musicPlaying) {
-                                gsap.to(bgMusic, { volume: 0.01, duration: 2.0, ease: "power1.out" });
-                            }
+                                if (lineIdx === 1 && musicPlaying) {
+                                    gsap.to(bgMusic, { volume: 0.05, duration: 2.2, ease: "power1.out" });
+                                }
+                                else if (lineIdx === 2 && musicPlaying) {
+                                    gsap.to(bgMusic, { volume: 0.01, duration: 2.0, ease: "power1.out" });
+                                }
 
-                            lineIdx++;
-                            setTimeout(showNextLine, 2600);
-                        }, 500);
+                                lineIdx++;
+                                setTimeout(showNextLine, 2800);
+                            }
+                        });
                     } else {
                         setTimeout(() => {
                             if (musicPlaying) {
                                 bgMusic.volume = 0;
                                 bgMusic.pause();
                             }
-                            endingText.style.display = 'none';
+                            gsap.to(endingText, { opacity: 0, duration: 0.5, onComplete: () => {
+                                endingText.style.display = 'none';
+                            }});
 
                             setTimeout(() => {
                                 function playHeartbeatSequence() {
@@ -1340,4 +1496,3 @@
     </script>
 </body>
 </html>
-
